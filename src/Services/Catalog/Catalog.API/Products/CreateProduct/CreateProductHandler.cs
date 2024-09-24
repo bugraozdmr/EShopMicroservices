@@ -14,7 +14,8 @@ public record CreateProductCommand(
 public record CreateProductResult(Guid Id);
 
 //internal kullandı ancak farklı dosyalara bolmek bence daha iyi
-internal class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, CreateProductResult>
+// marten direkt inject edilir zaten abstract
+internal class CreateProductCommandHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
@@ -31,6 +32,10 @@ internal class CreateProductCommandHandler : ICommandHandler<CreateProductComman
             Price = command.Price
         };
         
-        return new CreateProductResult(Guid.NewGuid());
+        // marten oto tabloyuda oluşturcak -- mt_doc_product --
+        session.Store(product);
+        await session.SaveChangesAsync(cancellationToken);
+        
+        return new CreateProductResult(product.Id);
     }
 }
