@@ -22,8 +22,16 @@ builder.Services.AddMarten(opts =>
     opts.Schema.For<ShoppingCart>().Identity(x => x.UserName);  // id kullanmadık bunu kullandık unique olarak
 }).UseLightweightSessions();
 
-// register services
+// register services -- ayni yerden olusma olmaz
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+// register decorator Scrutor
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    //options.InstanceName = "Basket";
+});
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
