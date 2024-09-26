@@ -1,8 +1,11 @@
 version: '3.8'
 
+#docker compose down && docker compose -p microservices up
+
 services:
   catalogdb:
     image: postgres
+    container_name: catalogdb
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -12,15 +15,31 @@ services:
       - "5434:5432"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data
+  
+  basketdb:
+    image: postgres
+    container_name: basketdb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: BasketDb
+    restart: always
+    ports:
+      # aynı portu acamazsın
+      - "5435:5432"
+    volumes:
+      - postgres_basket:/var/lib/postgresql/data
 
   catalog.api:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
+    container_name: catalog.api
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTP_PORTS: 8080
       #ASPNETCORE_HTTPS_PORTS: 8081
+      ## neden 5432 ?
       ConnectionStrings__Database: "Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=postgres"
     depends_on:
       - catalogdb
@@ -32,3 +51,4 @@ services:
 
 volumes:
   postgres_catalog:
+  postgres_basket:
