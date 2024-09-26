@@ -10,3 +10,13 @@ Bu sekilde https güvenir / volumeler oluşturulur kendi cihazında Mac özel ve
 
 dotnet dev-certs https --clean  # Önceki sertifikaları temizle
 dotnet dev-certs https           # Yeni bir geliştirici sertifikası oluştur
+
+
+mümkün mertebe kullanma
+dotnet dev-certs https --clean
+
+eklemek çok zor oluyor sonra
+
+ben eski projeye gittim o sdk 6.0'ı yüklerken şansa getirdi
+
+ama yeni proje oluştururken configure https desende olur bence
