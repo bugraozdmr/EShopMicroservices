@@ -1,0 +1,12 @@
+dotnet dev-certs https
+
+dotnet dev-certs https --trust
+
+volumes:
+  - ~/.aspnet/https:/home/app/.aspnet/https:ro
+
+
+Bu sekilde https güvenir / volumeler oluşturulur kendi cihazında Mac özel ve ayrıca 5432 !
+
+dotnet dev-certs https --clean  # Önceki sertifikaları temizle
+dotnet dev-certs https           # Yeni bir geliştirici sertifikası oluştur
