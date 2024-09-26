@@ -30,6 +30,13 @@ services:
     volumes:
       - postgres_basket:/var/lib/postgresql/data
 
+  distributedcache:
+    image: redis
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "6378:6379"
+
   catalog.api:
     build:
       context: .
