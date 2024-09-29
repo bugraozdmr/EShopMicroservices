@@ -8,20 +8,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.2" />
+      <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.1" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
       <PackageReference Include="Carter" Version="8.2.1" />
       <PackageReference Include="Marten" Version="7.28.2" />
       <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.8" />
       <PackageReference Include="Scrutor" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
