@@ -2,6 +2,7 @@ using Basket.API.Data;
 using Basket.API.Models;
 using BuildingBlocks.Behaviors;
 using BuildingBlocks.Exceptions.Handler;
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Weasel.Core;
@@ -9,8 +10,10 @@ using Weasel.Core;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.AddCarter();
+
+// Application Services
 var assembly = typeof(Program).Assembly;
+builder.Services.AddCarter();
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(assembly);
@@ -18,6 +21,7 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+// Data Services
 builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
@@ -28,15 +32,31 @@ builder.Services.AddMarten(opts =>
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 // register decorator Scrutor
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
-
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
     //options.InstanceName = "Basket";
 });
 
-builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+// Grpc Services
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});  // SSL EXCEPTION BYPASS
+/*.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = 
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
 
+    return handler;
+});
+*/
+
+// Cross-Cutting Services
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
     .AddRedis(builder.Configuration.GetConnectionString("Redis")!);
