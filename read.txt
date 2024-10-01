@@ -20,3 +20,8 @@ ben eski projeye gittim o sdk 6.0'ı yüklerken şansa getirdi
 
 ama yeni proje oluştururken configure https desende olur bence
 
+--
+elle conflict çözmek için ayarı değiş çek çöz yolla
+
+git config pull.rebase false
+git pull origin main
