@@ -2,7 +2,7 @@ version: '3.8'
 
 #docker compose down && docker compose -p microservices up
 #docker-compose down -v && docker-compose -p microservices up --build
-
+ 
 services:
   catalogdb:
     image: postgres
@@ -38,6 +38,19 @@ services:
     ports:
       - "6378:6379"
 
+  orderdb:
+    image: mcr.microsoft.com/mssql/server
+    #image: mcr.microsoft.com/azure-sql-edge calismadi- amd64 digeri
+    container_name: orderdb
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "SwN12345678"
+    restart: always
+    ports:
+      - "1433:1433"
+    volumes:
+      - orderdb_data:/var/opt/mssql # Veritabanı verilerini kalıcı hale getirmek için    
+
   catalog.api:
     build:
       context: .
@@ -56,6 +69,7 @@ services:
       #- "6060:8081"
     #volumes:
       #- /Users/bugra/.aspnet/dev-certs/https:/https
+      
   basket.api:
     build:
       context: .
@@ -88,3 +102,4 @@ services:
 volumes:
   postgres_catalog:
   postgres_basket:
+  orderdb_data:
