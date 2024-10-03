@@ -25,3 +25,19 @@ elle conflict çözmek için ayarı değiş çek çöz yolla
 
 git config pull.rebase false
 git pull origin main
+
+Ya böyle ya da
+
+dotnet ef migrations add InitialCreate --output-dir Data/Migrations --project Ordering.Infrastructure --startup-project Ordering.API
+
+dotnet ef migrations add InitialCreate -o Data/Migrations -p Ordering.Infrastructure -s Ordering.API
+
+Ordering API'a design eklemek lazım unutma
+
+pwd çıktısı
+/Users/bugra/Desktop/EShopMicroservices/src/Services/Ordering
+
+* Sonra dizin değiştir Infrastructure
+dotnet ef database update --startup-project ../Ordering.API
+
+yaz

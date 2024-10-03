@@ -11,7 +11,7 @@ public record OrderName
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(value);
         // eger bastaki gibi degilse verilen uzunluk fırlar
-        ArgumentOutOfRangeException.ThrowIfEqual(value.Length, DefaultLength);
+        ArgumentOutOfRangeException.ThrowIfNotEqual(value.Length, DefaultLength);
         
         return new OrderName(value);
     }
