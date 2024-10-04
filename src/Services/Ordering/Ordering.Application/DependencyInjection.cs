@@ -1,4 +1,5 @@
 using System.Reflection;
+using BuildingBlocks.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ordering.Application;
@@ -9,9 +10,11 @@ public static class DependencyInjection
     {
         // fluent validation sayesinde DependencyInjection eklenebildi
         // mediatr kesin gerekli uygulama bunun ayağına kurulu
-        services.AddMediatR(cfg =>
+        services.AddMediatR(config =>
         {
-            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+            config.AddOpenBehavior(typeof(LoggingBehavior<,>));
         });
         
         return services;
