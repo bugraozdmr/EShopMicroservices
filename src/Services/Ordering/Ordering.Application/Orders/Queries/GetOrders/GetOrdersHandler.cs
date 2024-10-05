@@ -17,7 +17,7 @@ public class GetOrdersHandler
         // return result
 
         var pageIndex = query.PaginationRequest.pageindex;
-        var pageSize = query.PaginationRequest.pageindex;
+        var pageSize = query.PaginationRequest.pagesize;
         
         var totalCount = await dbContext.Orders.LongCountAsync(cancellationToken);
 
