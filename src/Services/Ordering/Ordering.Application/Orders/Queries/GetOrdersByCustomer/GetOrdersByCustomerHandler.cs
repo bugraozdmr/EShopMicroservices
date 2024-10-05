@@ -12,7 +12,7 @@ public class GetOrdersByCustomerHandler
     public async Task<GetOrdersByCustomerResult> Handle(GetOrdersByCustomerQuery query,
         CancellationToken cancellationToken)
     {
-        // get obc
+        // get
         // return result
 
         var orders = await dbContext.Orders

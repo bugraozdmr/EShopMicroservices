@@ -11,6 +11,8 @@ public class CustomExceptionHandler : IExceptionHandler
 {
     private readonly ILogger<CustomExceptionHandler> _logger;
 
+    // TODO ne verirsen ver 404 400 hep 500 dönüyor hatada düzelt
+    
     public CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
     {
         _logger = logger;
