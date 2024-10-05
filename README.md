@@ -12,8 +12,8 @@ $ git clone https://github.com/bugraozdmr/EShopMicroservices.git
 
 ## Dotnet Package Installation
 ```console
-# change the working directory backend/LinguaNews
-$ cd backend/LinguaNews
+# change the working directory EShopMicroservices/src
+$ cd EShopMicroservices/src
 
 # install packages
 $ dotnet restore
