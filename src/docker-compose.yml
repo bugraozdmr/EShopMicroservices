@@ -2,6 +2,7 @@ version: '3.8'
 
 #docker compose down && docker compose -p microservices up
 #sudo docker-compose down -v && sudo docker-compose -p microservices up --build
+# add https if you have certificate configured
  
 services:
   catalogdb:
@@ -132,6 +133,21 @@ services:
       FeatureManagement__OrderFulfilment: false
     ports:
       - "6003:8080"
+  
+  yarpapigateway:
+    build:
+      context: .
+      dockerfile: ApiGateways/YarpApiGateway/Dockerfile
+    container_name: YarpApiGateway
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: 8080
+    depends_on:
+      - catalog.api
+      - ordering.api
+      - basket.api
+    ports:
+      - "6004:8080"
 
 volumes:
   postgres_catalog:

@@ -41,3 +41,27 @@ pwd çıktısı
 dotnet ef database update --startup-project ../Ordering.API
 
 yaz
+
+
+----------
+Eğer lokaldeyse bu uygun
+
+ "ordering-cluster": {
+        "Destinations": {
+          "destination1": {
+            "Address": "http://localhost:6003"
+          }
+        }
+      }
+
+Ancak docker'daysa
+
+ "ordering-cluster": {
+        "Destinations": {
+          "destination1": {
+            "Address": "http://ordering.api:6003"
+          }
+        }
+      }
+
+olcak
