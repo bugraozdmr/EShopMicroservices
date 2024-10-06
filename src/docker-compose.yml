@@ -62,6 +62,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+      # http istekleri için genel olarak 15672 bu olmazsa managemnet'a bağlanamazsın
 
   catalog.api:
     build:
@@ -93,9 +94,14 @@ services:
       ConnectionStrings__Database: "Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres"
       ConnectionStrings__Redis: "distributedcache:6379"
       GrpcSettings__DiscountUrl: "http://discount.grpc:8080"
+      MessageBroker__Host: "amqp://microservices:5672"
+      MessageBroker__Username: "guest"
+      MessageBroker__Password: "guest"
     depends_on:
       - basketdb
       - distributedcache
+      - discount.grpc
+      - messagebroker
     ports:
       - "6001:8080"
   
@@ -110,6 +116,22 @@ services:
       ConnectionStrings__Database: "Data Source=discountdb"
     ports:
       - "6002:8080"
+        
+  ordering.api:
+    build:
+      context: .
+      dockerfile: Services/Ordering/Ordering.API/Dockerfile
+    container_name: ordering.api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: 8080
+      ConnectionStrings__Database: "Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;Encrypt=False;TrustServerCertificate=True"
+      MessageBroker__Host: "amqp://microservices:5672"
+      MessageBroker__Username: "guest"
+      MessageBroker__Password: "guest"
+      FeatureManagement__OrderFulfilment: false
+    ports:
+      - "6003:8080"
 
 volumes:
   postgres_catalog:

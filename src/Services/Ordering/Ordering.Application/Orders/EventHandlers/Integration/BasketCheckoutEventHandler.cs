@@ -10,6 +10,7 @@ public class BasketCheckoutEventHandler
     (ISender sender,ILogger<BasketCheckoutEventHandler> logger)
     : IConsumer<BasketCheckoutEvent>
 {
+    // hard coded data goes to db
     public async Task Consume(ConsumeContext<BasketCheckoutEvent> context)
     {
         logger.LogInformation("Integration event handled: {IntegrationEvent}",context.Message.GetType().Name);
