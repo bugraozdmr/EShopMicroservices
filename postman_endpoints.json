@@ -1,0 +1,836 @@
+{
+	"info": {
+		"_postman_id": "2bbfe194-efcc-4177-ac29-5935a63a392c",
+		"name": "EndPoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30871712"
+	},
+	"item": [
+		{
+			"name": "Catalog",
+			"item": [
+				{
+					"name": "Post A Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\" : \"Grant\",\n    \"Description\" : \"Grant number one\",\n    \"ImageFile\" : \"dontknow\",\n    \"Price\" : 20,\n    \"Categories\" : [\"c1\",\"c2\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog_url_http}}/products",
+							"host": [
+								"{{catalog_url_http}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url_http}}/products",
+							"host": [
+								"{{catalog_url_http}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/health",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products?PageNumber=2&PageSize=2",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "PageNumber",
+									"value": "2"
+								},
+								{
+									"key": "PageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/019225c0-c690-4a27-873f-d28525d7ba02",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"019225c0-c690-4a27-873f-d28525d7ba02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/category/c2",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Id\" : \"019225c0-c690-4a27-873f-d28525d7ba0f\",\n    \"Name\" : \"Grant\",\n    \"Description\" : \"Wicky Wicky\",\n    \"ImageFile\" : \"dontknow\",\n    \"Price\" : 1200,\n    \"Categories\" : [\"c1\",\"c2\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog_url}}/products",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url_http}}/products/01922e56-2da5-4aae-a6bc-438798819f99",
+							"host": [
+								"{{catalog_url_http}}"
+							],
+							"path": [
+								"products",
+								"01922e56-2da5-4aae-a6bc-438798819f99"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Basket",
+			"item": [
+				{
+					"name": "Get Basket By Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/basket/pp19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"basket",
+								"pp19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Basket By Username Docker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url_http}}/basket/pp20",
+							"host": [
+								"{{basket_url_http}}"
+							],
+							"path": [
+								"basket",
+								"pp20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Cart\":\n    {\n        \"userName\": \"pp19\",\n        \"items\": [\n            {\n            \"quantity\": 2,\n            \"color\": \"amk\",\n            \"price\": 40,\n            \"productId\": \"f5bb5d8c-8b8f-42d2-9f28-ff85b1f7d935\",\n            \"productName\": \"Iphone 19\"\n            },\n            {\n            \"quantity\": 1,\n            \"color\": \"Blue\",\n            \"price\": 29.99,\n            \"productId\": \"ec4a5c2a-30c2-4d5f-b1a8-2a8f9ddf7995\",\n            \"productName\": \"Samsung S23\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url_http}}/basket/",
+							"host": [
+								"{{basket_url_http}}"
+							],
+							"path": [
+								"basket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout Basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"BasketCheckoutDto\":\n    {\n        \"userName\": \"pp19\",\n        \"customerId\": \"189dc8dc-990f-48e0-a37b-e6f2b60b9d7d\",\n        \"firstName\": \"john\",\n        \"lastName\": \"doe\",\n        \"emailAddress\": \"john@gmail.com\",\n        \"addressLine\": \"Broadway No:1\",\n        \"country\": \"England\",\n        \"state\": \"Nottingham\",\n        \"zipCode\": \"08050\",\n        \"totalPrice\":0,\n        \"cardName\": \"john\",\n        \"cardNumber\": \"8885555555554444\",\n        \"expiration\": \"06/30\",\n        \"cvv\": \"222\",\n        \"paymentMethod\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url_http}}/basket/checkout",
+							"host": [
+								"{{basket_url_http}}"
+							],
+							"path": [
+								"basket",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Basket Docker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Cart\":\n    {\n        \"userName\": \"pp20\",\n        \"items\": [\n            {\n            \"quantity\": 2,\n            \"color\": \"amk\",\n            \"price\": 100,\n            \"productId\": \"f5bb5d8c-8b8f-42d2-9f28-ff85b1f7d935\",\n            \"productName\": \"Iphone 19\"\n            },\n            {\n            \"quantity\": 1,\n            \"color\": \"Blue\",\n            \"price\": 29.99,\n            \"productId\": \"ec4a5c2a-30c2-4d5f-b1a8-2a8f9ddf7995\",\n            \"productName\": \"Iphone 16\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url_http}}/basket/",
+							"host": [
+								"{{basket_url_http}}"
+							],
+							"path": [
+								"basket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Basket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url_http}}/basket/grant_alemdar",
+							"host": [
+								"{{basket_url_http}}"
+							],
+							"path": [
+								"basket",
+								"grant_alemdar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url_http}}/health",
+							"host": [
+								"{{basket_url_http}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ordering",
+			"item": [
+				{
+					"name": "Get Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url_http}}/orders?PageIndex=0&PageSize=3",
+							"host": [
+								"{{ordering_url_http}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "PageIndex",
+									"value": "0"
+								},
+								{
+									"key": "PageSize",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders By Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders/customer/189DC8DC-990F-48E0-A37B-E6F2B60B9D7D",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders",
+								"customer",
+								"189DC8DC-990F-48E0-A37B-E6F2B60B9D7D"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders/ORD_1",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders",
+								"ORD_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Order\":\n    {\n        \"customerId\": \"58c49479-ec65-4de2-86e7-033c546291aa\",\n        \"orderName\": \"ORD_3\",\n        \"shippingAddress\": {\n            \"firstName\": \"grant\",\n            \"lastName\": \"alemdar\",\n            \"emailAddress\": \"grant@gmail.com\",\n            \"addressLine\": \"NYC 123\",\n            \"country\": \"USA\",\n            \"state\": \"NYC\",\n            \"zipCode\": \"34111\"\n        },\n        \"billingAddress\": {\n            \"firstName\": \"grant\",\n            \"lastName\": \"alemdar\",\n            \"emailAddress\": \"grant@gmail.com\",\n            \"addressLine\": \"Bahcelievler No:4\",\n            \"country\": \"Turkey\",\n            \"state\": \"Istanbul\",\n            \"zipCode\": \"38050\"\n        },\n        \"payment\": {\n            \"cardName\": \"grant\",\n            \"cardNumber\": \"1113123214322\",\n            \"expiration\": \"22/40\",\n            \"cvv\": \"322\",\n            \"paymentMethod\": 1\n        },\n        \"status\": 2,\n        \"orderItems\": [\n            {\n                \"orderId\": \"c05ac4ca-1b6e-4cf0-a635-1692b4f7a971\",\n                \"productId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\n                \"quantity\": 2,\n                \"price\": 500.00\n            },\n            {\n                \"orderId\": \"c05ac4ca-1b6e-4cf0-a635-1692b4f7a971\",\n                \"productId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\n                \"quantity\": 1,\n                \"price\": 400.00\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ordering_url}}/orders",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Order\":\n    {\n        \"id\" : \"EED44D93-2C39-4EE8-869F-FBC685986987\",\n        \"customerId\": \"58c49479-ec65-4de2-86e7-033c546291aa\",\n        \"orderName\": \"ORD_3\",\n        \"shippingAddress\": {\n            \"firstName\": \"grant\",\n            \"lastName\": \"wick\",\n            \"emailAddress\": \"grant@gmail.com\",\n            \"addressLine\": \"NYC 123\",\n            \"country\": \"USA\",\n            \"state\": \"NYC\",\n            \"zipCode\": \"34111\"\n        },\n        \"billingAddress\": {\n            \"firstName\": \"grant\",\n            \"lastName\": \"wick\",\n            \"emailAddress\": \"grant@gmail.com\",\n            \"addressLine\": \"Bahcelievler No:4\",\n            \"country\": \"Turkey\",\n            \"state\": \"Istanbul\",\n            \"zipCode\": \"38050\"\n        },\n        \"payment\": {\n            \"cardName\": \"grant\",\n            \"cardNumber\": \"1113123214322\",\n            \"expiration\": \"22/40\",\n            \"cvv\": \"322\",\n            \"paymentMethod\": 1\n        },\n        \"status\": 2,\n        \"orderItems\": [\n            {\n                \"orderId\": \"c05ac4ca-1b6e-4cf0-a635-1692b4f7a971\",\n                \"productId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\n                \"quantity\": 2,\n                \"price\": 500.00\n            },\n            {\n                \"orderId\": \"c05ac4ca-1b6e-4cf0-a635-1692b4f7a971\",\n                \"productId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\n                \"quantity\": 1,\n                \"price\": 400.00\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ordering_url}}/orders",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders/C05AC4CA-1B6E-4CF0-A635-1692B4F7A971",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders",
+								"C05AC4CA-1B6E-4CF0-A635-1692B4F7A971"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url_http}}/health",
+							"host": [
+								"{{ordering_url_http}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "YarpApiGateway",
+			"item": [
+				{
+					"name": "Catalog",
+					"item": [
+						{
+							"name": "Post A Product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\" : \"Grant\",\n    \"Description\" : \"Grant number one\",\n    \"ImageFile\" : \"dontknow\",\n    \"Price\" : 20,\n    \"Categories\" : [\"c1\",\"c2\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Products Pagination",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products?PageNumber=1&PageSize=20",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									],
+									"query": [
+										{
+											"key": "PageNumber",
+											"value": "1"
+										},
+										{
+											"key": "PageSize",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get product by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products/01926324-8438-4998-83f6-c3c94416f4c3",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products",
+										"01926324-8438-4998-83f6-c3c94416f4c3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product By Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products/category/c2",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products",
+										"category",
+										"c2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products/01922e56-2da5-4aae-a6bc-438798819f99",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products",
+										"01922e56-2da5-4aae-a6bc-438798819f99"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Basket",
+					"item": [
+						{
+							"name": "Get Basket By Username",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket/pp19",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket",
+										"pp19"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Basket By Username Docker Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket/pp20",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket",
+										"pp20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Basket",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Cart\":\n    {\n        \"userName\": \"pp19\",\n        \"items\": [\n            {\n            \"quantity\": 2,\n            \"color\": \"amk\",\n            \"price\": 40,\n            \"productId\": \"f5bb5d8c-8b8f-42d2-9f28-ff85b1f7d935\",\n            \"productName\": \"Iphone 19\"\n            },\n            {\n            \"quantity\": 1,\n            \"color\": \"Blue\",\n            \"price\": 29.99,\n            \"productId\": \"ec4a5c2a-30c2-4d5f-b1a8-2a8f9ddf7995\",\n            \"productName\": \"Samsung S23\"\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket/",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Basket",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"BasketCheckoutDto\":\n    {\n        \"userName\": \"pp19\",\n        \"customerId\": \"189dc8dc-990f-48e0-a37b-e6f2b60b9d7d\",\n        \"firstName\": \"john\",\n        \"lastName\": \"doe\",\n        \"emailAddress\": \"john@gmail.com\",\n        \"addressLine\": \"Broadway No:1\",\n        \"country\": \"England\",\n        \"state\": \"Nottingham\",\n        \"zipCode\": \"08050\",\n        \"totalPrice\":0,\n        \"cardName\": \"john\",\n        \"cardNumber\": \"8885555555554444\",\n        \"expiration\": \"06/30\",\n        \"cvv\": \"222\",\n        \"paymentMethod\": 2\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{basket_url_http}}/basket/checkout",
+									"host": [
+										"{{basket_url_http}}"
+									],
+									"path": [
+										"basket",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ordering",
+					"item": [
+						{
+							"name": "Get Orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders?PageIndex=0&PageSize=3",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "PageIndex",
+											"value": "0"
+										},
+										{
+											"key": "PageSize",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Orders By Customer Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders/customer/189DC8DC-990F-48E0-A37B-E6F2B60B9D7D",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders",
+										"customer",
+										"189DC8DC-990F-48E0-A37B-E6F2B60B9D7D"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Orders By Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders/ORD_4",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders",
+										"ORD_4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Order Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Order\":\n    {\n        \"customerId\": \"58c49479-ec65-4de2-86e7-033c546291aa\",\n        \"orderName\": \"ORD_3\",\n        \"shippingAddress\": {\n            \"firstName\": \"grant\",\n            \"lastName\": \"alemdar\",\n            \"emailAddress\": \"grant@gmail.com\",\n            \"addressLine\": \"NYC 123\",\n            \"country\": \"USA\",\n            \"state\": \"NYC\",\n            \"zipCode\": \"34111\"\n        },\n        \"billingAddress\": {\n            \"firstName\": \"grant\",\n            \"lastName\": \"alemdar\",\n            \"emailAddress\": \"grant@gmail.com\",\n            \"addressLine\": \"Bahcelievler No:4\",\n            \"country\": \"Turkey\",\n            \"state\": \"Istanbul\",\n            \"zipCode\": \"38050\"\n        },\n        \"payment\": {\n            \"cardName\": \"grant\",\n            \"cardNumber\": \"1113123214322\",\n            \"expiration\": \"22/40\",\n            \"cvv\": \"322\",\n            \"paymentMethod\": 1\n        },\n        \"status\": 2,\n        \"orderItems\": [\n            {\n                \"orderId\": \"c05ac4ca-1b6e-4cf0-a635-1692b4f7a971\",\n                \"productId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\n                \"quantity\": 2,\n                \"price\": 500.00\n            },\n            {\n                \"orderId\": \"c05ac4ca-1b6e-4cf0-a635-1692b4f7a971\",\n                \"productId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\n                \"quantity\": 1,\n                \"price\": 400.00\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

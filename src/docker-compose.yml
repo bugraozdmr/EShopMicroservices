@@ -148,6 +148,21 @@ services:
       - basket.api
     ports:
       - "6004:8080"
+  
+  shopping.web:
+    image: shopping.web
+    container_name: shopping.web
+    build:
+      context: .
+      dockerfile: WebApps/Shopping.Web/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: 8080
+      ApiSettings__GatewayAddress: "http://yarpapigateway:8080" #container etkilesim
+    depends_on:
+      - yarpapigateway
+    ports:
+      - "6005:8080"
 
 volumes:
   postgres_catalog:
